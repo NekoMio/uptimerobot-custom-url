@@ -5,8 +5,15 @@ const express = require("express"),
 
 app.get("/:id", cors(), (req, res) => {
     request.get(`https://stats.uptimerobot.com/${req.params.id}`, (error, response, body) => {
-        body = body.replace(/https:\/\/stats.uptimerobot.com\/(?=<req.params.id>)/g, `https://${req.get("host")}/get/https://stats.uptimerobot.com/${req.params.id}`);
-        body = body.replace(/https:\/\/stats.uptimerobot.com\/api/g, `https://${req.get("host")}/get/https://stats.uptimerobot.com/api`);
+        body = body.replace(/https:\/\/stats.uptimerobot.com\/(?=<req.params.id>)/g, `http://${req.get("host")}/get/https://stats.uptimerobot.com/${req.params.id}`);
+        body = body.replace(/https:\/\/stats.uptimerobot.com\/api/g, `http://${req.get("host")}/get/https://stats.uptimerobot.com/api`);
+        res.send(body);
+    });
+});
+
+app.get("/:id/:id2/", cors(), (req, res) => {
+    request.get(`https://stats.uptimerobot.com/${req.params.id}/${req.params.id2}`, (error, response, body) => {
+        body = body.replace(/https:\/\/stats.uptimerobot.com\/api/g, `http://${req.get("host")}/get/https://stats.uptimerobot.com/api`);
         res.send(body);
     });
 });
