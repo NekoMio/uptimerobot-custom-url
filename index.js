@@ -12,7 +12,7 @@ app.get("/:id", cors(), (req, res) => {
 
 app.get("/:id/:id2/", cors(), (req, res) => {
     request.get(`https://stats.uptimerobot.com/${req.params.id}/${req.params.id2}`, (error, response, body) => {
-        body = body.replace(`https://stats.uptimerobot.com/${req.params.id}`, "javascript:window.history.back();")
+        body = body.replace(`href="https://stats.uptimerobot.com/${req.params.id}"`, `href="https://stats.uptimerobot.com/${req.params.id}" style="visibility: hidden;"`)
         body = body.replace(/https:\/\/stats.uptimerobot.com\/api/g, `https://${req.get("host")}/get/https://stats.uptimerobot.com/api`);
         res.send(body);
     });
