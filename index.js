@@ -12,6 +12,7 @@ app.get("/:id", cors(), (req, res) => {
 
 app.get("/:id/:id2/", cors(), (req, res) => {
     request.get(`https://stats.uptimerobot.com/${req.params.id}/${req.params.id2}`, (error, response, body) => {
+        body = body.replace(`https://stats.uptimerobot.com/${req.params.id}`, `https://${req.get("host")}/${req.params.id}`);
         body = body.replace(/https:\/\/stats.uptimerobot.com\/api/g, `https://${req.get("host")}/get/https://stats.uptimerobot.com/api`);
         res.send(body);
     });
