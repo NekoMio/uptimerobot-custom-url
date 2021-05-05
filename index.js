@@ -4,7 +4,7 @@ const express = require("express"),
 
 app.get("/:id", (req, res) => {
     request.get(`https://stats.uptimerobot.com/${req.params.id}`, (error, response, body) => {
-        res.send(body.replace(/https:\/\/stats.uptimerobot.com\/api/g, `${req.protocol}://${req.get("host")}/get/https://stats.uptimerobot.com/api`));
+        res.send(body.replace(/https:\/\/stats.uptimerobot.com\/api/g, `https://${req.get("host")}/get/https://stats.uptimerobot.com/api`));
     });
 });
 
