@@ -26,6 +26,6 @@ app.get("/get/*", cors(), (req, res) => {
     });
 });
 
-app.listen(process.env.PORT || 8100, () => {
+app.listen(process.env.PORT || 8000, () => {
     console.log(`Status page ready!`);
 });
