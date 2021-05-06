@@ -3,6 +3,17 @@ const express = require("express"),
       cors = require("cors"),
       request = require("request");
 
+app.get("/", (req, res) => {
+    res.send(`<h1>UptimeRobot Custom URL</h1>
+<h2>Use a custom URL wit UptimeRobot again!</h2>
+
+<h3>To use, simply add the following code to your html file:</h3>
+<pre>
+    <span>&ltiframe allow="fullscreen" allowfullscreen src="https://uptimerobot-custom-url.herokuapp.com/[your id]" style="position:absolute; top:0px; left:0px; width:100%; height:100%; z-index:999" frameborder="no" scrolling="auto"&gt&lt/iframe&gt</span>
+</pre>
+<p>Please note that this will take up the full page and will **not** set a favicon or title.</p>`);
+});
+
 app.get("/:id", cors(), (req, res) => {
     request.get(`https://stats.uptimerobot.com/${req.params.id}`, (error, response, body) => {
         body = body.replace(/https:\/\/stats.uptimerobot.com\/api/g, `https://${req.get("host")}/get/https://stats.uptimerobot.com/api`);
